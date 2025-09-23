@@ -1,0 +1,66 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "https://k-i18n.kodirex.space/schema.json",
+    "title": "k-i18n Pluralization Rules",
+    "description": "Defines the grammatical pluralization rules for different locales.",
+    "type": "object",
+    "patternProperties": {
+        "^[a-z]{2}(-[A-Z]{2})?$": {
+            "type": "object",
+            "description": "Pluralization rules for a specific locale (e.g., 'en', 'lv', 'pt-BR').",
+            "properties": {
+                "zero": {
+                    "$ref": "#/definitions/rule"
+                },
+                "one": {
+                    "$ref": "#/definitions/rule"
+                },
+                "two": {
+                    "$ref": "#/definitions/rule"
+                },
+                "few": {
+                    "$ref": "#/definitions/rule"
+                },
+                "many": {
+                    "$ref": "#/definitions/rule"
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "definitions": {
+        "rule": {
+            "description": "An array of condition groups. All conditions within a group must be true (AND).",
+            "type": "array",
+            "items": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "operand": {
+                            "type": "string",
+                            "description": "The variable to test (e.g., 'n' for the number, 'n % 10' for modulo)."
+                        },
+                        "operator": {
+                            "type": "string",
+                            "enum": [
+                                "is",
+                                "is_not",
+                                "in_range",
+                                "not_in_range"
+                            ]
+                        },
+                        "value": {
+                            "description": "The value to test against (can be a number or an array of numbers for ranges)."
+                        }
+                    },
+                    "required": [
+                        "operand",
+                        "operator",
+                        "value"
+                    ]
+                }
+            }
+        }
+    }
+}

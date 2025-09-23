@@ -1,0 +1,13 @@
+{
+    "default": {
+        "one": [
+            [
+                {
+                    "operand": "n",
+                    "operator": "is",
+                    "value": 1
+                }
+            ]
+        ]
+    }
+}
