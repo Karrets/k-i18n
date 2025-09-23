@@ -1,0 +1,47 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "https://example.com/my-app.language.schema.json",
+    "title": "my-app Language File",
+    "description": "Language file for my-app",
+    "type": "object",
+    "properties": {
+        "my-app.basic-translation": {
+            "description": "Simple string substitution.",
+            "type": "string"
+        },
+        "my-app.optional-translation": {
+            "description": "Optional simple string substitution.",
+            "type": "string"
+        },
+        "my-app.translation-with-variables": {
+            "description": "A string with named placeholders for variable substitution. The ICU message format uses single curly braces for variables.",
+            "type": "string",
+            "pattern": ".*\\{.*\\}.*"
+        },
+        "my-app.plural-translation": {
+            "description": "Pluralization rules based on ICU message format categories.",
+            "type": "object",
+            "properties": {
+                "zero": { "type": "string" },
+                "one": { "type": "string" },
+                "two": { "type": "string" },
+                "few": { "type": "string" },
+                "many": { "type": "string" },
+                "other": { "type": "string" }
+            },
+            "required": ["other"],
+            "additionalProperties": false
+        },
+        "my-app.contextual-translation": {
+            "description": "Provides different translations based on a context string (e.g., gender).",
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            }
+        }
+    },
+    "required": [
+        "my-app.basic-translation",
+        "my-app.plural-translation"
+    ]
+}
