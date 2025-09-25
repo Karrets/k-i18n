@@ -1,7 +1,9 @@
-/**
- * @fileoverview TypeScript interfaces for k-i18n pluralization rules.
- * Generated from the JSON schema.
- */
+export interface TranslationConfig {
+    defaultLocale: string;
+    locale: string;
+    fallback?: string;
+    languageDirectory?: string;
+}
 
 /**
  * A single condition to be evaluated as part of a pluralization rule.
